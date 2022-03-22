@@ -9,13 +9,12 @@ import { login } from "../features/user/userSlice";
 export default function Login() {
 
   const user = useSelector((state) => state.user);
-  console.log(user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     if (user.logged) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [user])
 
@@ -32,7 +31,7 @@ export default function Login() {
         <h1 className=" text-white font-semibold text-2xl">Collaborate joins people with common goals</h1>
       </div>
       <main className=" flex justify-center items-center">
-        <form className="flex flex-col bg-gray-200 w-[350px] h-[500px] py-10 justify-center rounded-md mt-6" onSubmit={signIn}>
+        <form className="flex flex-col bg-gray-200 w-[400px] h-[500px] py-10 justify-center rounded-md mt-6" onSubmit={signIn}>
           <h2 className=" font-medium text-2xl rounded-md px-10">Login</h2>
           <p className=" flex justify-center my-8">
             No account? <Link to="/signup" className="text-green-600 font-medium hover:opacity-90">, SignUp</Link>

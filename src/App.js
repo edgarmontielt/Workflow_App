@@ -1,21 +1,28 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
+import Principal from "./pages/Principal";
 import SignUp from "./pages/SignUp";
+import WorkSpaces from "./pages/WorkSpaces";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
       <div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />}/>
+          <Route path="/signup" element={<SignUp />} />
+          <Route element={<Principal />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/workspaces" element={<WorkSpaces />} />{" "}
+          </Route>
         </Routes>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 

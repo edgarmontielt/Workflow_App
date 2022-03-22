@@ -7,7 +7,7 @@ export default function SignUp() {
   return (
     <div className="grid grid-cols-2 items-center justify-center h-screen pt-10 bg-image">
       <main className=" flex justify-center items-center">
-        <form className="flex flex-col bg-gray-200 w-[400px] h-[600px] py-12 justify-center rounded-md mt-5">
+        <form className="flex flex-col bg-gray-200 w-[450px] h-[600px] py-12 justify-center rounded-md mt-5">
           <h2 className=" font-medium text-2xl rounded-md px-10">Sign Up</h2>
           <p className=" flex justify-center my-8">
             Back to <Link to="/login" className=" text-green-600 font-medium hover:opacity-90">: Login</Link>
