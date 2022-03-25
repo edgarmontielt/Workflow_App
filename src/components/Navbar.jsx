@@ -6,7 +6,7 @@ export default function Navbar() {
   const { logged } = useSelector((state) => state.user);
 
   return (
-    <nav className={logged ?"py-3  font-semibold shadow-md " : "bg-meadow-600 py-3 text-white font-semibold z-10"}>
+    <nav className={logged ?"py-3  font-semibold shadow-md " : "bg-meadow-600 py-3 text-white font-semibold z-10 shadow-md"}>
       <div className=" max-w-screen-xl  mx-auto flex justify-between items-center">
         <p className="hover:opacity-50 text-xl">
           <Link to="/">Collaborate</Link>
@@ -14,10 +14,10 @@ export default function Navbar() {
         {logged ? (
           <ul className="flex gap-6">
             <li className=" hover:opacity-80 active:scale-95 py-1 px-4 w-26 text-center rounded-md">
-              <Link to="#">Workspaces</Link>
+              <Link to="/workspaces">Workspaces</Link>
             </li>
             <li className=" hover:opacity-80 active:scale-95 py-1 px-4 w-26 text-center rounded-md">
-              <Link to="#">Ayuda</Link>
+              <Link to="#">Help</Link>
             </li>
             <li className=" hover:opacity-60 active:scale-95 py-1 px-4 w-26 text-center rounded-md flex items-center gap-2 cursor-pointer">
               <span><FaUserAlt className=" w-4 h-4"/></span>

@@ -3,10 +3,28 @@
 @tailwind utilities;
 
 .bg-image {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.686) 98%, rgba(0, 0, 0, 0.7) 98%, rgba(0, 0, 0, 0.768) 98%, rgba(0, 0, 0, 0.686) 98%, #000000b9 98%, rgba(7, 6, 7, 0.864) 100%), url("https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
-    background-size: cover;
-    background-attachment: fixed;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.686) 98%,
+      rgba(0, 0, 0, 0.7) 98%,
+      rgba(0, 0, 0, 0.768) 98%,
+      rgba(0, 0, 0, 0.686) 98%,
+      #000000b9 98%,
+      rgba(7, 6, 7, 0.864) 100%
+    ),
+    url("https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+  background-size: cover;
+  background-attachment: fixed;
 }
 
+body::-webkit-scrollbar {
+  width: 12px;
+}
 
+body::-webkit-scrollbar-track {
+  background: #c6c6c6;
+}
 
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(137, 137, 137);
+}
