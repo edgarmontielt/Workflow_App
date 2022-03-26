@@ -8,7 +8,7 @@ export default function WorkSpaces() {
   const [modalOpened, setModalOpened] = useState(false);
 
   return (
-    <section className="w-full ">
+    <section className=" w-[80%] ml-[20%]">
       <div className=" text-2xl font-medium text-stone-700 flex">
         <h2>Workspaces</h2>
         <div className="ml-auto">
@@ -18,10 +18,10 @@ export default function WorkSpaces() {
         </div>
       </div>
 
-      <div className="mt-16 ml-10 flex flex-wrap gap-10">
-        <Teams teams={teams} />
-        <div className=" bg-dodger-blue-600 w-80 rounded-md hover:bg-dodger-blue-500 cursor-pointer flex justify-center items-center p-3" onClick={() => { setModalOpened(!modalOpened) }}>
-          <p className=" text-lg font-medium text-gray-100 hover:text-gray-900">New Team</p>
+      <div className="mt-16 flex flex-wrap gap-10">
+        <Teams teams={teams} setTeams={setTeams} />
+        <div className=" bg-meadow-50 w-72 h-[160px] rounded-md hover:bg-meadow-100 cursor-pointer flex justify-center items-center p-3" onClick={() => { setModalOpened(!modalOpened) }}>
+          <p className=" text-base font-medium text-gray-700 hover:text-gray-600">New Team</p>
         </div>
         {modalOpened && <Modal setModalOpened={setModalOpened} teams={teams} setTeams={setTeams} />}
       </div>

@@ -4,12 +4,28 @@ import { post } from "../../api";
 export const login = createAsyncThunk(
   "user/login",
   async (credentials, thunkAPI) => {
-    const response = await post("/auth/login", {
-      email: credentials.email,
-      password: credentials.password,
-    });
-    // console.log(response.data.json())
-    return response.data;
+    const res = await fetch(
+      "https://backendtzuzulcode.wl.r.appspot.com/auth/login",
+      {
+        method: "POST",
+        credentials: "include", // Permite realizar la peticion al server, el server sabe cuales y las envía
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      }
+    );
+    const data = await res.json();
+    //action.payload del reducer (fullfilled)
+
+    if (!data.id) {
+      console.log("Lanzando error");
+      return thunkAPI.rejectWithValue("Error de loggeo");
+    }
+    return data;
   }
 );
 
@@ -26,6 +42,49 @@ export const logout = createAsyncThunk("user/logout", async (arg, thunkAPI) => {
   return response.data;
 });
 
+// export const signup = createAsyncThunk("user/signup", async (data, thunkAPI) => {
+//   const response = await post("/auth/signup", {
+//     name: data.name,
+//     birthday: data.birthday,
+//     city: data.city,
+//     email: data.email,
+//     password: data.password,
+//   })
+//   console.log(response.data)
+//   return response.data
+// })
+
+export const signup = createAsyncThunk(
+  "user/signup",
+  async (data, thunkAPI) => {
+    const res = await fetch(
+      "https://backendtzuzulcode.wl.r.appspot.com/auth/signup",
+      {
+        method: "POST",
+        credentials: "include", // Permite realizar la peticion al server, el server sabe cuales y las envía
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          birthday: data.birthday,
+          city: data.city,
+          email: data.email,
+          password: data.password,
+        }),
+      }
+    );
+    const inf = await res.json();
+    //action.payload del reducer (fullfilled)
+
+    if (!inf.id) {
+      console.log("Lanzando error");
+      return thunkAPI.rejectWithValue("Error de loggeo");
+    }
+    return inf;
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -38,21 +97,20 @@ const userSlice = createSlice({
   //Thunks
   extraReducers: (builder) => {
     builder.addCase(login.pending, (state, action) => {
-      state.loading = true
-      state.error = false
-      state.message = ""
-      state.name = ""
+      state.loading = true;
+      state.error = false;
+      state.message = "";
+      state.name = "";
     });
 
     builder.addCase(login.rejected, (state, action) => {
-      state.logged = false
+      state.logged = false;
       state.loading = false;
       state.error = true;
       state.message = action.payload.message;
     });
 
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action)
       state.loading = false;
       state.logged = true;
       state.error = false;
@@ -65,7 +123,7 @@ const userSlice = createSlice({
 
     builder.addCase(userValidate.fulfilled, (state, action) => {
       state.logged = true;
-      state.name =  action.payload?.user?.name
+      state.name = action.payload.name;
       state.error = false;
     });
 
@@ -84,12 +142,24 @@ const userSlice = createSlice({
       state.logged = false;
       state.name = "";
       state.error = false;
+      state.loading = false;
     });
 
     builder.addCase(logout.rejected, (state, action) => {
       state.logged = true;
       state.error = true;
       state.message = "Error";
+    });
+
+    builder.addCase(signup.pending, (state, action) => {
+      state.loading = true;
+    });
+
+    builder.addCase(signup.fulfilled, (state, action) => {
+      state.loading = false;
+      state.message = "Registro exitoso";
+      state.logged = true;
+      state.name = action.payload.name;
     });
   },
 });

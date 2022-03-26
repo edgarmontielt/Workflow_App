@@ -1,6 +1,6 @@
 export default function Dashboard() {
   return (
-    <section className="w-full">
+    <section className=" w-[80%] ml-[20%]">
       <div className=" text-2xl font-semibold text-stone-700">Dashboard</div>
       <div className=" grid grid-cols-2 gap-10 mt-10 ">
         <div className=" bg-gray-100 h-72 p-5 rounded-xl shadow-lg">

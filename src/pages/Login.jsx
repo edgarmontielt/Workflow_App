@@ -25,7 +25,7 @@ export default function Login() {
       email: { value: email },
       password: { value: password },
     } = event.target;
-    dispatch(login({ email, password }));
+    dispatch(login({email, password}));
   };
 
   return (

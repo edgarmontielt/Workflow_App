@@ -1,7 +1,8 @@
 import axios from "axios";
+import { URL } from "../config";
 
 const instance = axios.create({
-  baseURL: "https://backendtzuzulcode.wl.r.appspot.com",
+  baseURL: URL,
 });
 
 const get = async (url) => {
