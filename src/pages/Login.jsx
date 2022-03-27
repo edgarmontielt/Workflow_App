@@ -17,8 +17,6 @@ export default function Login() {
     }
   }, [user]);
 
-  console.log(user.logged);
-
   const signIn = (event) => {
     event.preventDefault();
     const {

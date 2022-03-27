@@ -1,5 +1,8 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import TeamDetails from "./components/workspaces/TeamDetails";
 import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
@@ -18,6 +21,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route element={<Principal />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/my_teams/:idTeam" element={<TeamDetails/>}/>
             <Route path="/workspaces" element={<WorkSpaces />} />{" "}
           </Route>
         </Routes>

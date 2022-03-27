@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <nav className={logged ? "py-3  font-semibold shadow-md " : "bg-meadow-600 py-3 text-white font-semibold z-10 shadow-md"}>
-      <div className=" max-w-screen-xl  mx-auto flex justify-between items-center">
+      <div className=" max-w-screen-sm  mx-auto flex justify-between items-center md:max-w-screen-xl">
         <p className="hover:opacity-50 text-xl">
           <Link to="/">Collaborate</Link>
         </p>

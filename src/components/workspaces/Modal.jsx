@@ -22,6 +22,7 @@ export default function Modal({ setModalOpened, teams, setTeams }) {
 
     return (
         <div className="bg-gray-200 w-[450px] rounded-xl shadow-stone-600 shadow-xl h-[550px] left-1/3 p-10 fixed">
+            {console.log(teams)}
             <div className=" flex items-center ">
                 <h1 className=" text-3xl font-medium text-dodger-blue-500 ">New Team</h1>
                 <span className=" ml-auto cursor-pointer p-2 rounded-full hover:bg-gray-300" onClick={() => { setModalOpened(false) }}><IoMdClose className=" w-6 h-6 hover:opacity-60" /></span>

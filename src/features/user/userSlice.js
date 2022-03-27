@@ -25,6 +25,7 @@ export const login = createAsyncThunk(
       console.log("Lanzando error");
       return thunkAPI.rejectWithValue("Error de loggeo");
     }
+     console.log(data.id)
     return data;
   }
 );
@@ -93,6 +94,7 @@ const userSlice = createSlice({
     loading: false,
     error: true,
     message: "",
+    id: '',
   },
   //Thunks
   extraReducers: (builder) => {
@@ -115,6 +117,7 @@ const userSlice = createSlice({
       state.logged = true;
       state.error = false;
       state.name = action.payload.name;
+      state.id = action.payload.id
     });
 
     builder.addCase(userValidate.pending, (state, action) => {

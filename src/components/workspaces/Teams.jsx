@@ -1,20 +1,20 @@
 import { useEffect } from "react"
-import { get } from "../../api"
+import { Link } from "react-router-dom"
 import Team from "./Team"
+import { get } from "../../api"
 
 export default function Teams({ teams, setTeams }) {
 
-    useEffect(() => {
+    useEffect(()=>{
         get("/teams")
-        .then(res =>  setTeams(res.data))
-        .catch(error => console.log(error))
-    }, [])
+        .then(res=>setTeams(res.data))
+        .catch(error=>console.log(error))
+    },[])
 
     return (
         <div className="flex gap-12 flex-wrap">
-            {teams.map(team => {
-                return <Team key={team.length} data={team}></Team>
-            })}
+            {teams.map(team => <Link to={"/my_teams/"+team._id}><Team key={team._id} data={team}></Team></Link>)}
         </div>
     )
 }
+
