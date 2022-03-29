@@ -9,6 +9,7 @@ export default function Teams({ teams, setTeams }) {
         get("/teams")
         .then(res=>setTeams(res.data))
         .catch(error=>console.log(error))
+        console.log(teams);
     },[])
 
     return (

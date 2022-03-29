@@ -6,23 +6,26 @@ export default function Modal({ setModalOpened, teams, setTeams }) {
     const addTeam = (event) => {
         event.preventDefault()
         const { name, img, description, color } = event.target
-        const newTeam = {
-            name: name.value,
-            img: img.value,
-            description: description.value,
-            // color: color.value
-        }
+        // const newTeam = new FormData();
+        // newTeam.append("name", name.value)
+        // newTeam.append("img", img.value)
+        // newTeam.append("description", description.value)
 
-        post("/teams", newTeam)
-        .then(res => {
-            setTeams([...teams, res.data])
-        })
+        // post("/teams", newTeam)
+        // .then(res => {
+        //     setTeams([...teams, res.data])
+        // })
+        const newTeam = {
+            name:name.value,
+            img:img.value,
+            description:description.value
+        }
+        setTeams([...teams,newTeam])
         setModalOpened(false)
     }
 
     return (
         <div className="bg-gray-200 w-[450px] rounded-xl shadow-stone-600 shadow-xl h-[550px] left-1/3 p-10 fixed">
-            {console.log(teams)}
             <div className=" flex items-center ">
                 <h1 className=" text-3xl font-medium text-dodger-blue-500 ">New Team</h1>
                 <span className=" ml-auto cursor-pointer p-2 rounded-full hover:bg-gray-300" onClick={() => { setModalOpened(false) }}><IoMdClose className=" w-6 h-6 hover:opacity-60" /></span>
