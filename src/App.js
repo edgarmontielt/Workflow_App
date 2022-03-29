@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import TeamDetails from "./pages/TeamDetails";
@@ -9,8 +7,18 @@ import Login from "./pages/Login";
 import Principal from "./pages/Principal";
 import SignUp from "./pages/SignUp";
 import WorkSpaces from "./pages/WorkSpaces";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { userValidate } from "./features/user/userSlice";
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(userValidate())
+  },[])
+
   return (
     <>
       <Navbar />

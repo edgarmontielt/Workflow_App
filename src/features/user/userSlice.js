@@ -25,7 +25,7 @@ export const login = createAsyncThunk(
       console.log("Lanzando error");
       return thunkAPI.rejectWithValue("Error de loggeo");
     }
-     console.log(data.id)
+    console.log(data.id);
     return data;
   }
 );
@@ -33,8 +33,24 @@ export const login = createAsyncThunk(
 export const userValidate = createAsyncThunk(
   "user/validate",
   async (params, thunkAPI) => {
-    const response = await post("/auth/validate");
-    return response.data;
+    const response = await fetch(
+      "https://backendtzuzulcode.wl.r.appspot.com/auth/validate",
+      {
+        method: "POST",
+        credentials: "include", // Permite realizar la peticion al server, el server sabe cuales y las envía
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (!data.logged) {
+      console.log("Lanzando error...");
+      return thunkAPI.rejectWithValue("Error de loggeo");
+    }
+    return data;
   }
 );
 
@@ -94,7 +110,7 @@ const userSlice = createSlice({
     loading: false,
     error: true,
     message: "",
-    id: '',
+    id: "",
   },
   //Thunks
   extraReducers: (builder) => {
@@ -117,7 +133,7 @@ const userSlice = createSlice({
       state.logged = true;
       state.error = false;
       state.name = action.payload.name;
-      state.id = action.payload.id
+      state.id = action.payload.id;
     });
 
     builder.addCase(userValidate.pending, (state, action) => {
@@ -126,7 +142,7 @@ const userSlice = createSlice({
 
     builder.addCase(userValidate.fulfilled, (state, action) => {
       state.logged = true;
-      state.name = action.payload.name;
+      state.name = action.payload?.user?.name;
       state.error = false;
     });
 

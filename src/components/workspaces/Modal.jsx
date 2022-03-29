@@ -5,22 +5,24 @@ export default function Modal({ setModalOpened, teams, setTeams }) {
 
     const addTeam = (event) => {
         event.preventDefault()
-        const { name, img, description, color } = event.target
-        // const newTeam = new FormData();
-        // newTeam.append("name", name.value)
-        // newTeam.append("img", img.value)
-        // newTeam.append("description", description.value)
+        const { name, img, description } = event.target
+        const newTeam = new FormData();
+        newTeam.append("name", name.value)
+        newTeam.append("img", img.files[0])
+        newTeam.append("description", description.value)
+        console.log(newTeam)
 
-        // post("/teams", newTeam)
-        // .then(res => {
-        //     setTeams([...teams, res.data])
-        // })
-        const newTeam = {
-            name:name.value,
-            img:img.value,
-            description:description.value
-        }
-        setTeams([...teams,newTeam])
+        post("/teams", newTeam)
+        .then(res => {
+            console.log(res.data)
+            setTeams([...teams, res.data])
+        })
+        // const newTeam = {
+        //     name:name.value,
+        //     img:img.value,
+        //     description:description.value
+        // }
+        // setTeams([...teams,newTeam])
         setModalOpened(false)
     }
 
@@ -32,7 +34,7 @@ export default function Modal({ setModalOpened, teams, setTeams }) {
             </div>
             <form className='flex flex-col h-full mt-14 gap-3' onSubmit={addTeam}>
                 <input className='p-2 outline-none border focus:border-dodger-blue-400 my-2 rounded-md' name='name' placeholder='Name...' type="text" />
-                <input className='p-2 outline-none border focus:border-dodger-blue-400 my-2 rounded-md' name='img' placeholder='Image...' type="text" />
+                <input className='p-2 outline-none border focus:border-dodger-blue-400 my-2 rounded-md' name='img' placeholder='Image...' type="file" />
                 <input className='p-2 outline-none border focus:border-dodger-blue-400 my-2 rounded-md' name='description' placeholder='Description...' type="text" />
 
                 <select name="color" id="" className="p-2 outline-none rounded-md focus:border-dodger-blue-400 my-2">

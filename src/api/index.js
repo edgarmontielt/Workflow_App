@@ -11,8 +11,8 @@ const get = async (url) => {
   });
 };
 
-const post = async (url) => {
-  return await instance.post(url, {
+const post = async (url, data) => {
+  return await instance.post(url, data, {
     withCredentials: true,
   });
 };

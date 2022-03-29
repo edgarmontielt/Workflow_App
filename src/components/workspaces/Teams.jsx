@@ -9,13 +9,11 @@ export default function Teams({ teams, setTeams }) {
         get("/teams")
         .then(res=>setTeams(res.data))
         .catch(error=>console.log(error))
-        console.log(teams);
     },[])
 
     return (
         <div className="flex gap-12 flex-wrap">
-            {teams.map(team => <Link to={"/my_teams/"+team._id}><Team key={team._id} data={team}></Team></Link>)}
+            {teams.map(team => <Link to={"/my_teams/"+team._id}><Team key={team.length} data={team}></Team></Link>)}
         </div>
     )
 }
-

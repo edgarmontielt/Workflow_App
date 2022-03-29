@@ -5,6 +5,7 @@ import InputForm from "../components/InputForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { login } from "../features/user/userSlice";
+import { FaSpinner } from "react-icons/fa"
 
 export default function Login() {
   const user = useSelector((state) => state.user);
@@ -23,7 +24,7 @@ export default function Login() {
       email: { value: email },
       password: { value: password },
     } = event.target;
-    dispatch(login({email, password}));
+    dispatch(login({ email, password }));
   };
 
   return (
@@ -38,7 +39,11 @@ export default function Login() {
           className="flex flex-col bg-gray-200 w-[400px] h-[500px] py-10 justify-center rounded-md mt-6"
           onSubmit={signIn}
         >
+          <div className=" flex items-center ">
           <h2 className=" font-medium text-2xl rounded-md px-10">Login</h2>
+          
+          {user.loading&&<FaSpinner className="animate-spin h-5 w-5 mr-16 ml-auto" />}
+          </div>
           <p className=" flex justify-center my-8">
             No account?{" "}
             <Link
@@ -48,7 +53,6 @@ export default function Login() {
               , SignUp
             </Link>
           </p>
-          {user.loading&&<p>Loading...</p>}
           <div className="flex flex-col px-10">
             <InputForm type={"email"} name={"email"} placeholder="Email" />
             <InputForm
