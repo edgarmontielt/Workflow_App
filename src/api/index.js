@@ -17,5 +17,18 @@ const post = async (url, data) => {
   });
 };
 
+const del = async (url) => {
+  return await instance.delete(url, {
+    withCredentials: true,
+  })
+}
+
+const put = async (url, data) => {
+  return await instance.put(url, data, {
+    withCredentials:true
+  })
+}
+
+
 export default instance;
-export {get, post}
+export {get, post, del, put}

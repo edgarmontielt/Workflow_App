@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoMdClose } from "react-icons/io"
 
-export default function Modal({newTaskModalOpened, setNewTaskModalOpened, addTask}) {
+export default function Modal({newTaskModalOpened, setNewTaskModalOpened, func}) {
     return (
         <>
             {newTaskModalOpened && <div>
@@ -12,12 +12,12 @@ export default function Modal({newTaskModalOpened, setNewTaskModalOpened, addTas
 
                     <button className='absolute right-5 top-5' onClick={() => { setNewTaskModalOpened(false) }}><IoMdClose className='w-10 h-10 rounded-full text-gray-400 p-2 hover:bg-gray-200 hover:text-gray-700' /></button>
 
-                    <h2 className='px-16 py-10 text-lavender-800 text-2xl font-medium'>Create a new team</h2>
+                    <h2 className='px-16 py-10 text-lavender-800 text-2xl font-medium'>New task</h2>
                     <div className="flex">
-                        <form className='flex flex-col px-16 pb-10 w-2/3' onSubmit={addTask}>
-                            <input type="text" name="name" placeholder="Task name" className="mb-3 py-[5px] px-2 rounded-md outline-none opacity-100 border bg-gray-200"></input>
-                            <textarea name="description" placeholder="Description" className="mb-3 py-[5px] px-2 rounded-md outline-none opacity-100 border bg-gray-200 h-40"></textarea>
-                            <button className=' bg-dodger-blue-600 mt-2 py-1 text-md font-semibold text-white rounded-md'>Crear equipo</button>
+                        <form className='flex flex-col px-16 pb-10 w-2/3' onSubmit={func}>
+                            <input type="text" name="nameTask" placeholder="Task name" className="mb-3 py-[5px] px-2 rounded-md outline-none opacity-100 border bg-gray-200"></input>
+                            <textarea name="descriptionTask" placeholder="Description" className="mb-3 py-[5px] px-2 rounded-md outline-none opacity-100 border bg-gray-200 h-40"></textarea>
+                            <button className=' bg-dodger-blue-600 mt-2 py-1 text-md font-semibold text-white rounded-md'>Save</button>
                         </form>
                         <div className="pr-5">
                             <h2 className="mb-10 text-lg font-medium">Upload File</h2>
